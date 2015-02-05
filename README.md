@@ -1,6 +1,9 @@
 ent
 ===
 
+[![Build Status](https://travis-ci.org/jreese/ent.svg?branch=master)](https://travis-ci.org/jreese/ent)
+
+
 `ent` is a basic framework for generating attribute-based data structures from
 dictionary-like data sources:
 
