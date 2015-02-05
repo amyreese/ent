@@ -69,12 +69,24 @@ class TestEnt(unittest.TestCase):
         self.assertEqual(ent.hashes[0].list[1], 2)
         self.assertEqual(ent.hashes[1].hash.scalar, 1)
 
-    @unittest.expectedFailure
     def test_constructor_vs_load(self):
         ent1 = Ent(self.structure)
         ent2 = Ent.load(self.structure)
 
-        self.assertEqual(ent1, ent2)
+        self.assertEqual(ent1.scalar, ent2.scalar)
+        self.assertEqual(ent1.list, ent2.list)
+
+        self.assertEqual(ent1.hash.scalar, ent2.hash.scalar)
+        self.assertEqual(ent1.hash.list, ent2.hash.list)
+        self.assertEqual(ent1.hash.hash.scalar, ent2.hash.hash.scalar)
+
+        self.assertEqual(ent1.hashes[0].scalar, ent2.hashes[0].scalar)
+        self.assertEqual(ent1.hashes[0].list, ent2.hashes[0].list)
+        self.assertEqual(ent1.hashes[0].hash.scalar, ent2.hashes[0].hash.scalar)
+
+        self.assertEqual(ent1.hashes[1].scalar, ent2.hashes[1].scalar)
+        self.assertEqual(ent1.hashes[1].list, ent2.hashes[1].list)
+        self.assertEqual(ent1.hashes[1].hash.scalar, ent2.hashes[1].hash.scalar)
 
     @unittest.expectedFailure
     def test_dict_access(self):
