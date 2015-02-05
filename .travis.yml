@@ -9,8 +9,8 @@ python:
 install:
     - "pip install flake8"
 script:
-    - "make lint test"
     - "pip install ."
+    - "make lint test"
 matrix:
     allow_failures:
         - python: "2.6"
