@@ -52,8 +52,8 @@ class TestEnt(unittest.TestCase):
         self.assertEqual(ent.list[2], 3)
 
         self.assertIsInstance(ent.hash, Ent)
-        #self.assertEqual(len(ent.hash), 3)
-        #self.assertTrue('scalar' in ent.hash)
+        # self.assertEqual(len(ent.hash), 3)
+        # self.assertTrue('scalar' in ent.hash)
 
         self.assertIsInstance(ent.hashes, list)
         self.assertEqual(len(ent.hashes), 2)
