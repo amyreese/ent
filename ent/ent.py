@@ -52,11 +52,21 @@ class Ent(object):
             data = {}
         data.update(kwargs)
 
-        # prevent overwriting values with unsafe callables
         for key, value in list(data.items()):
+            t = type(value)
+
+            # prevent overwriting values with unsafe callables
             if (key in self.__class__.__dict__ and
-                    type(value) not in SAFE_TYPES):
+                    t not in SAFE_TYPES):
                 data.pop(key)
+
+            if t in (tuple, list, set):
+                value = Ent.load(value)
+                data[key] = value
+
+            elif t == dict:
+                value = Ent(value)
+                data[key] = value
 
         self.__dict__.update(data)
 
