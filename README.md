@@ -72,8 +72,6 @@ data structures.
 
 Let's say we have a small JSON file containing my personal profile:
 
-'''data.json'''
-
     {
         "name": "John Reese",
         "urls": {
