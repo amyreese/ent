@@ -52,8 +52,6 @@ class TestEnt(unittest.TestCase):
         self.assertEqual(ent.list[2], 3)
 
         self.assertIsInstance(ent.hash, Ent)
-        # self.assertEqual(len(ent.hash), 3)
-        # self.assertTrue('scalar' in ent.hash)
 
         self.assertIsInstance(ent.hashes, list)
         self.assertEqual(len(ent.hashes), 2)
@@ -70,3 +68,17 @@ class TestEnt(unittest.TestCase):
         self.assertEqual(ent.hashes[0].scalar, 1)
         self.assertEqual(ent.hashes[0].list[1], 2)
         self.assertEqual(ent.hashes[1].hash.scalar, 1)
+
+    @unittest.expectedFailure
+    def test_constructor_vs_load(self):
+        ent1 = Ent(self.structure)
+        ent2 = Ent.load(self.structure)
+
+        self.assertEqual(ent1, ent2)
+
+    @unittest.expectedFailure
+    def test_dict_access(self):
+        ent = Ent.load(self.structure)
+
+        self.assertEqual(len(ent.hash), 3)
+        self.assertTrue('scalar' in ent.hash)

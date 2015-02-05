@@ -12,7 +12,7 @@ lint:
 	flake8 --show-source .
 
 test:
-	python -m unittest tests/*.py
+	python -m unittest tests
 
 clean:
 	rm -rf build dist README MANIFEST ent.egg-info
