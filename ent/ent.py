@@ -8,8 +8,9 @@ from __future__ import unicode_literals
 
 import json
 
-safe_types = (bool, int, float, str,
-              tuple, list, dict, set)
+from future.builtins import bytes, str
+
+SAFE_TYPES = (bool, int, float, bytes, str, tuple, list, dict, set)
 
 
 class Encoder(json.JSONEncoder):
@@ -67,7 +68,7 @@ class Ent(object):
         # prevent overwriting values with unsafe callables
         for key, value in list(data.items()):
             if (key in self.__class__.__dict__ and
-                    type(value) not in safe_types):
+                    type(value) not in SAFE_TYPES):
                 data.pop(key)
 
         self.__dict__.update(data)
@@ -78,7 +79,7 @@ class Ent(object):
     def _encode(self):
         """Generate a recursive JSON representation of the ent."""
         obj = {k: v for k, v in self.__dict__.items()
-               if not k.startswith('_') and type(v) in safe_types}
+               if not k.startswith('_') and type(v) in SAFE_TYPES}
         obj.update({k: v._encode() for k, v in self.__dict__.items()
                    if isinstance(v, Ent)})
         return obj
@@ -90,7 +91,7 @@ class Ent(object):
     @classmethod
     def load(cls, data):
         """Create a new ent from an existing value.  The value must either
-        be an instance of Ent, or must be an instance of safe_types.  If
+        be an instance of Ent, or must be an instance of SAFE_TYPES.  If
         the value is a base type (bool, int, string, etc), it will just be
         returned.  Iterable types will be loaded recursively, transforming
         dictionaries into Ent instances, but otherwise maintaining the
@@ -100,7 +101,7 @@ class Ent(object):
         if isinstance(data, Ent):
             return cls({k: cls.load(v) for k, v in data.__dict__.items()})
 
-        elif t not in safe_types:
+        elif t not in SAFE_TYPES:
             return None
 
         elif t in (tuple, list, set):

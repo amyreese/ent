@@ -26,4 +26,5 @@ setup(
     ],
     license='MIT License',
     packages=['ent'],
+    requires=['future'],
 )
