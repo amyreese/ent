@@ -1,7 +1,7 @@
 ent
 ===
 
-ent is a basic framework for generating attribute-based data structures from
+`ent` is a basic framework for generating attribute-based data structures from
 dictionary-like data sources:
 
     > from ent import Ent
@@ -14,7 +14,7 @@ dictionary-like data sources:
     > obj.bar
     None
 
-ent can contain arbitrarily-nested hierarchies, as long as every node/leaf
+`ent` can contain arbitrarily-nested hierarchies, as long as every node/leaf
 is either a primitive type, or an ent:
 
     > obj = Ent({
@@ -35,17 +35,20 @@ is either a primitive type, or an ent:
     > obj.inner.foo
     u'baz'
 
-ents can be merged and diffed, and it will even enforce types when merging
+`ent` can be merged and diffed, and it will even enforce types when merging
 keys that are shared:
 
     > ent1 = Ent(foo=1, bar=True)
 
-    > ent2 = Ent(foo='hi', goo='win')
+    > ent2 = Ent(foo='hi', bar=False, goo='win')
 
     > Ent.merge(ent1, ent2)
-    <Ent {'foo': 1, 'bar': True, 'goo': 'win'}>
+    <Ent {'foo': 1, 'bar': False}>
 
-ent even provides a stand-in for the `json` module to automatically convert
+    > Ent.diff(ent1, ent2)
+    <Ent {'bar': False}>
+
+`ent` even provides a stand-in for the `json` module to automatically convert
 to and from Ent objects and raw JSON:
 
     > from ent import json
