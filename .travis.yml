@@ -1,8 +1,6 @@
 language: python
 python:
-    - "2.6"
     - "2.7"
-    - "3.2"
     - "3.3"
     - "3.4"
     - "pypy"
@@ -14,5 +12,4 @@ script:
     - "make lint test"
 matrix:
     allow_failures:
-        - python: "2.6"
         - python: "pypy"
