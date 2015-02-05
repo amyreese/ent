@@ -27,6 +27,7 @@ is either a primitive type, or an ent:
             'foo': 'baz',
             'bar': 'bang',
             },
+        'ent': Ent(foo='bar'),
         })
 
     > obj.foo
