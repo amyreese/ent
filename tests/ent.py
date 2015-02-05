@@ -82,11 +82,13 @@ class TestEnt(unittest.TestCase):
 
         self.assertEqual(ent1.hashes[0].scalar, ent2.hashes[0].scalar)
         self.assertEqual(ent1.hashes[0].list, ent2.hashes[0].list)
-        self.assertEqual(ent1.hashes[0].hash.scalar, ent2.hashes[0].hash.scalar)
+        self.assertEqual(ent1.hashes[0].hash.scalar,
+                         ent2.hashes[0].hash.scalar)
 
         self.assertEqual(ent1.hashes[1].scalar, ent2.hashes[1].scalar)
         self.assertEqual(ent1.hashes[1].list, ent2.hashes[1].list)
-        self.assertEqual(ent1.hashes[1].hash.scalar, ent2.hashes[1].hash.scalar)
+        self.assertEqual(ent1.hashes[1].hash.scalar,
+                         ent2.hashes[1].hash.scalar)
 
     @unittest.expectedFailure
     def test_dict_access(self):
