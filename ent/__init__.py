@@ -10,4 +10,4 @@ from __future__ import unicode_literals
 from .ent import Ent, Singleton
 from . import json
 
-__version__ = '0.1.1'
+__version__ = '0.2.0'
