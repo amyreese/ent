@@ -6,22 +6,9 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import json
-
 from future.builtins import bytes, str
 
 SAFE_TYPES = (bool, int, float, bytes, str, tuple, list, dict, set)
-
-
-class Encoder(json.JSONEncoder):
-    """A simple JSON encoder that looks for objects with a _encode() method,
-    and uses that to return their JSON representation."""
-
-    def default(self, o):
-        try:
-            return o._encode()
-        except:
-            return str(o)
 
 
 class Singleton(type):

@@ -7,6 +7,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from .ent import Encoder, Ent, Singleton
+from .ent import Ent, Singleton
+from . import json
 
 __version__ = '0.1.1'
