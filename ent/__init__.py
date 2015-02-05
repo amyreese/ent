@@ -9,4 +9,4 @@ from __future__ import unicode_literals
 
 from .ent import Encoder, Ent, Singleton
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
