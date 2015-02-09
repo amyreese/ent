@@ -9,7 +9,7 @@ if path.isfile('README.md'):
 setup(
     name='ent',
     description='library for creating arbitrary data structures',
-    version='0.2.2',
+    version='0.2.3',
     author='John Reese',
     author_email='john@noswap.com',
     url='https://github.com/jreese/ent',
