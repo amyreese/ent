@@ -95,8 +95,11 @@ class Ent(object):
         hierarchy of the input data."""
         t = type(data)
 
-        if isinstance(data, Ent):
+        if t == cls:
             return cls({k: cls.load(v) for k, v in data.__dict__.items()})
+
+        elif isinstance(data, Ent):
+            return data.copy()
 
         elif t not in SAFE_TYPES:
             return None

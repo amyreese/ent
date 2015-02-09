@@ -11,6 +11,14 @@ import unittest
 from ent import Ent
 
 
+class Foo(Ent):
+    pass
+
+
+class Bar(Foo):
+    pass
+
+
 class TestEnt(unittest.TestCase):
 
     def setUp(self):
@@ -69,6 +77,18 @@ class TestEnt(unittest.TestCase):
         self.assertEqual(ent.hashes[0].list[1], 2)
         self.assertEqual(ent.hashes[1].hash.scalar, 1)
 
+    def test_ent_subclasses(self):
+        foo = Foo()
+        bar = Bar()
+
+        self.assertTrue(isinstance(foo, Ent))
+        self.assertTrue(isinstance(foo, Foo))
+        self.assertFalse(isinstance(foo, Bar))
+
+        self.assertTrue(isinstance(bar, Ent))
+        self.assertTrue(isinstance(bar, Foo))
+        self.assertTrue(isinstance(bar, Bar))
+
     def test_constructor_vs_load(self):
         ent1 = Ent(self.structure)
         ent2 = Ent.load(self.structure)
@@ -89,6 +109,27 @@ class TestEnt(unittest.TestCase):
         self.assertEqual(ent1.hashes[1].list, ent2.hashes[1].list)
         self.assertEqual(ent1.hashes[1].hash.scalar,
                          ent2.hashes[1].hash.scalar)
+
+    def test_foo_stays_foo(self):
+        foo = Foo()
+
+        ent = Ent(foo=foo)
+        self.assertTrue(isinstance(ent.foo, Foo))
+
+        ent = Ent(foos=[foo])
+        self.assertTrue(isinstance(ent.foos[0], Foo))
+
+        ent = Ent(hash={'foo': foo})
+        self.assertTrue(isinstance(ent.hash.foo, Foo))
+
+        ent = Ent.load(foo)
+        self.assertTrue(isinstance(ent, Foo))
+
+        ent = Ent.load([foo])
+        self.assertTrue(isinstance(ent[0], Foo))
+
+        ent = Ent.load({'foo': foo})
+        self.assertTrue(isinstance(ent.foo, Foo))
 
     @unittest.expectedFailure
     def test_dict_access(self):
