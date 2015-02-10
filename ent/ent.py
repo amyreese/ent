@@ -86,7 +86,7 @@ class Ent(object):
         return self.__class__.load(self)
 
     @classmethod
-    def load(cls, data):
+    def load(cls, data, promote=False):
         """Create a new ent from an existing value.  The value must either
         be an instance of Ent, or must be an instance of SAFE_TYPES.  If
         the value is a base type (bool, int, string, etc), it will just be
@@ -96,10 +96,19 @@ class Ent(object):
         t = type(data)
 
         if t == cls:
+            # same class, create new copy
             return cls({k: cls.load(v) for k, v in data.__dict__.items()})
 
-        elif isinstance(data, Ent):
+        elif isinstance(data, cls):
+            # child class, always use directly
             return data.copy()
+
+        elif isinstance(data, Ent):
+            # parent class, promote or preserve
+            if promote:
+                return cls({k: cls.load(v) for k, v in data.__dict__.items()})
+            else:
+                return data.copy()
 
         elif t not in SAFE_TYPES:
             return None

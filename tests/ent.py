@@ -143,6 +143,34 @@ class TestEnt(unittest.TestCase):
         ent = Ent.load({'foo': foo})
         self.assertTrue(isinstance(ent.foo, Foo))
 
+    def test_foo_promotion(self):
+        base = Ent()
+
+        ent = Foo.load(base, promote=True)
+        self.assertTrue(isinstance(ent, Foo))
+
+        ent = Foo.load(base, promote=False)
+        self.assertFalse(isinstance(ent, Foo))
+
+        ent1 = Foo.load(base, promote=True)
+        ent = Bar.load(ent1, promote=True)
+        self.assertTrue(isinstance(ent, Bar))
+
+        ent1 = Foo.load(base, promote=True)
+        ent = Bar.load(ent1, promote=False)
+        self.assertTrue(isinstance(ent, Foo))
+        self.assertFalse(isinstance(ent, Bar))
+
+        ent1 = Foo.load(base, promote=False)
+        ent = Bar.load(ent1, promote=True)
+        self.assertTrue(isinstance(ent, Bar))
+
+        ent1 = Foo.load(base, promote=False)
+        ent = Bar.load(ent1, promote=False)
+        self.assertTrue(isinstance(ent, Ent))
+        self.assertFalse(isinstance(ent, Foo))
+        self.assertFalse(isinstance(ent, Bar))
+
     @unittest.expectedFailure
     def test_dict_access(self):
         ent = Ent.load(self.structure)
