@@ -97,7 +97,8 @@ class Ent(object):
 
         if t == cls:
             # same class, create new copy
-            return cls({k: cls.load(v) for k, v in data.__dict__.items()})
+            return cls({k: cls.load(v, promote)
+                        for k, v in data.__dict__.items()})
 
         elif isinstance(data, cls):
             # child class, always use directly
@@ -106,7 +107,8 @@ class Ent(object):
         elif isinstance(data, Ent):
             # parent class, promote or preserve
             if promote:
-                return cls({k: cls.load(v) for k, v in data.__dict__.items()})
+                return cls({k: cls.load(v, promote)
+                            for k, v in data.__dict__.items()})
             else:
                 return data.copy()
 
