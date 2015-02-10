@@ -89,6 +89,18 @@ class TestEnt(unittest.TestCase):
         self.assertTrue(isinstance(bar, Foo))
         self.assertTrue(isinstance(bar, Bar))
 
+        foo = Foo.load({'foo': 'bar'})
+
+        self.assertTrue(isinstance(foo, Ent))
+        self.assertTrue(isinstance(foo, Foo))
+        self.assertFalse(isinstance(foo, Bar))
+
+        bar = Bar.load({'foo': 'bar'})
+
+        self.assertTrue(isinstance(bar, Ent))
+        self.assertTrue(isinstance(bar, Foo))
+        self.assertTrue(isinstance(bar, Bar))
+
     def test_constructor_vs_load(self):
         ent1 = Ent(self.structure)
         ent2 = Ent.load(self.structure)

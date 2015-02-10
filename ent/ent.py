@@ -61,11 +61,11 @@ class Ent(object):
                 data.pop(key)
 
             if t in (tuple, list, set):
-                value = Ent.load(value)
+                value = self.__class__.load(value)
                 data[key] = value
 
             elif t == dict:
-                value = Ent(value)
+                value = self.__class__(value)
                 data[key] = value
 
         self.__dict__.update(data)
