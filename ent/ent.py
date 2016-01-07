@@ -9,10 +9,10 @@ from __future__ import unicode_literals
 import sys
 
 if sys.version_info[0] == 2:
-    SAFE_TYPES = (bool, int, float, str, unicode,
+    SAFE_TYPES = (bool, int, float, str, unicode,  # noqa
                   tuple, list, dict, set, type(None))
 else:
-    SAFE_TYPES = (bool, int, float, bytes, str,
+    SAFE_TYPES = (bool, int, float, bytes, str,  # noqa
                   tuple, list, dict, set, type(None))
 
 
