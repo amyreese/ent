@@ -9,3 +9,4 @@ from __future__ import unicode_literals
 
 from .ent import TestEnt
 from .json import TestEntJson
+from .yaml import TestEntYaml
