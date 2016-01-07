@@ -9,10 +9,6 @@ from __future__ import unicode_literals
 
 from .ent import Ent, Singleton
 from . import json
-
-try:
-    from . import yaml
-except ImportError:
-    pass
+from . import yaml
 
 __version__ = '0.2.3'
