@@ -25,5 +25,5 @@ setup(
     ],
     license='MIT License',
     packages=['ent'],
-    requires=['future'],
+    requires=['future', 'pyyaml'],
 )
