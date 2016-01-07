@@ -1,2 +1,2 @@
 future
-pyyaml
+PyYAML
