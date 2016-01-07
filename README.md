@@ -52,16 +52,22 @@ keys that are shared:
     > Ent.diff(ent1, ent2)
     <Ent {'bar': False}>
 
-`ent` even provides a stand-in for the `json` module to automatically convert
-to and from Ent objects and raw JSON:
+`ent` even provides a stand-in for the `json` and `yaml` modules to
+automatically convert to and from Ent objects and raw JSON/YAML:
 
-    > from ent import json
+    > from ent import json, yaml
 
     > json.loads('{"foo": true, "bar": null}')
     <Ent {'foo': True, 'bar': None}>
 
     > json.dumps(Ent(foo=True, bar=None))
     u'{"foo": true, "bar": null}'
+
+    > yaml.safe_load('bar: null\nfoo: true\n')
+    <Ent {'foo': True, 'bar': None}>
+
+    > yaml.dump(Ent(foo=True, bar=None))
+    u'baz: 1\nfoo: bar\n'
 
 
 why
