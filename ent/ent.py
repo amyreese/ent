@@ -8,7 +8,7 @@ from __future__ import unicode_literals
 
 from future.builtins import bytes, str
 
-SAFE_TYPES = (bool, int, float, bytes, str, tuple, list, dict, set)
+SAFE_TYPES = (bool, int, float, bytes, str, tuple, list, dict, set, type(None))
 
 
 class Singleton(type):
