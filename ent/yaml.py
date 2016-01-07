@@ -6,16 +6,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-try:
-    import yaml
-
-except ImportError:
-    def dump(*args, **kwargs):
-        raise NotImplementedError('yaml not available')
-
-    def safe_load(*args, **kwargs):
-        raise NotImplementedError('yaml not available')
-
+import yaml
 
 from ent import Ent
 
