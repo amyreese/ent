@@ -6,9 +6,14 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from future.builtins import bytes, str
+import sys
 
-SAFE_TYPES = (bool, int, float, bytes, str, tuple, list, dict, set, type(None))
+if sys.version_info[0] == 2:
+    SAFE_TYPES = (bool, int, float, str, unicode,
+                  tuple, list, dict, set, type(None))
+else:
+    SAFE_TYPES = (bool, int, float, bytes, str,
+                  tuple, list, dict, set, type(None))
 
 
 class Singleton(type):
