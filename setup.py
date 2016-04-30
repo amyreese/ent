@@ -3,8 +3,8 @@ from setuptools import setup
 from os import path
 import shutil
 
-if path.isfile('README.md'):
-    shutil.copyfile('README.md', 'README')
+if path.isfile('README.rst'):
+    shutil.copyfile('README.rst', 'README')
 
 setup(
     name='ent',
